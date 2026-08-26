@@ -35,17 +35,17 @@ jobs:
         run: npm ci
 
       - name: Build site
-        run: npm run build
+        run: npx --no-install next build
         env:
           GITHUB_PAGES: 'true'
 
       - name: Disable Jekyll
-        run: touch dist/.nojekyll
+        run: touch out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./out
 
   deploy:
     environment:
